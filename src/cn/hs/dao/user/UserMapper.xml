@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.user.UserMapper">
+	<!-- 添加用户 -->
+	<insert id="insertUser" parameterType="User" >
+		insert into user(userId,userPwd,userName,userTel,userImg,userOther,userRole) 
+		values(#{userId},#{userPwd},#{userName},#{userTel},#{userImg},#{userOther},#{userRole});
+	</insert>
+	<!-- 更新用户 -->
+	<update id="updateUser">
+		update user 
+		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+			<if test="userId!=null">userId=#{userId},</if>
+			<if test="userName!=null">userName=#{userName},</if>
+			<if test="userOther!=null">userOther=#{userOther},</if>
+			<if test="userPwd!=null">userPwd=#{userPwd},</if>
+			<if test="userTel!=null">userTel=#{userTel},</if>
+			<if test="userStatus!=null">userStatus=#{userStatus},</if>
+			<if test="userRole!=null">userRole=#{userRole},</if>
+		</trim>
+	</update>
+	<!-- 删除用户 -->
+	<delete id="deleteUser" parameterType="User">
+		delete from user where id=#{id}
+	</delete>
+	<!-- 登录 -->
+	<select id="loginUser" resultType="User">
+		select * from user 
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="userName.length()==11">
+				and userTel=#{userName}
+			</if>
+			<if test="userName.length()>11">
+				and userId=#{userName}
+			</if>
+		</trim>
+	</select>
+	<!-- 获取用户信息 -->
+	<select id="getUserList" resultType="User">
+		select * from user where userRole !=1 and userStatus!="未通过" limit #{page},#{pageSize}
+	</select>
+	<!-- 获取用户总数 -->
+	<select id="getUserNum" resultType="int">
+		select count(*) from user where userRole !=1 and userStatus!="未通过"
+	</select>
+	<!-- 获取待审核用户 -->
+	<select id="getUserCheckList" resultType="User">
+		select * from user where userStatus="未通过"
+	</select>
+	<!-- 获取单用户信息(按姓名、邮箱、ID查询) -->
+	<select id="getUser" parameterType="User" resultType="User">
+		select * from user 
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userName!=null and userName!=''">
+				and userName=#{userName}
+			</if>
+			<if test="userId!=null">
+				and userId=#{userId}
+			</if>
+			<if test="userTel!=null">
+				and userTel=#{userTel}
+			</if>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+		</trim>
+	</select>
+	<!-- 获取管理员邮箱和授权码-->
+	<select id="getMail" resultType="User">
+		select userId,userOther,userTel from user where userRole=1
+	</select>
+	
+</mapper>

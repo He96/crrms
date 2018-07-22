@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.firstDate.FirstDateMapper">
+<!-- 添加第一周时间 -->
+<insert id="addfirstDate">
+	insert into firstdate(firstDate) 
+	values(#{firstDate})
+</insert>
+
+<!-- 删除第一周时间 -->
+<delete id="deletefirstDate">
+	delete from firstdate
+</delete>
+<!-- 查询第一周时间 -->
+<select id="getfirstDate" resultType="FirstDate">
+	select * from firstdate
+</select>
+<!-- 获取时间总数 -->
+<select id="firstDateNum" resultType="int">
+	select count(*) from firstdate
+</select>
+</mapper>

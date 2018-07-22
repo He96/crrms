@@ -1,0 +1,101 @@
+*{
+	margin: 0 auto;
+}
+/*背景图片*/
+body{
+	background:linear-gradient(to right,#f3f4f3,#bdbdbd);
+}
+#logo{
+	width: 180px;
+	height: 60px;
+	padding-top:20px;
+	margin-left: 16%;
+}
+header{
+	width: 100%;
+	padding: 30px;
+	text-align: center;
+}
+header h2{
+	font-family:"仿宋";
+	font-weight:bold;
+}
+article{
+	width: 350px;
+	min-width: 100px;
+    height: 300px;
+	padding: 30px;
+	margin-top:2.0%;
+	box-shadow: #707070 5px 3px 5px;
+	}
+article:hover{
+	position:relative;
+	bottom: 3px;
+	left: 2px;
+	border: 1px solid #bfbfbf;
+	box-shadow: #7d7976 5px 13px 15px;
+}
+.userInput{
+	margin: 15px;
+	height: 40px;
+	border: 1px #bfbfbf solid;
+	border-radius: 3%;
+	display: flex;
+	box-shadow: #7d7976 5px 3px 5px;
+}
+.userInput:hover{
+	border: 1px #707070 solid;
+}
+
+#username,#password{
+	width: 80%;
+	font-size: 16px;
+	display: flex;
+	background: none;
+	border: none;
+}
+#resultInfo{
+	background: none;
+	border: none;
+}
+#reginfo{
+	text-align: right;
+	padding:0px 10px 0px 0px
+}
+/*注册样式*/
+#reginfo a{
+	color:#606060;
+}
+#reginfo a:hover{
+	color:#c23933;
+	text-decoration: none;
+}
+
+.infoInput{
+	padding: 5px 8px 5px 3px;
+	width:35px;
+	height:35px;
+}
+#submit{
+	width: 100%;
+	height: 100%;
+	border: none;
+	background: none;
+	color: #505050;
+}
+/*输入错误提示框*/
+#tips{
+	font-size: 16px;
+	color: red;
+	text-align: center;
+}
+/*判断样式*/
+.error{
+	border:1px red solid;
+	color:red;
+}
+#affiche {
+	margin: 0;
+	padding: 0;
+}
+/*尾页*/

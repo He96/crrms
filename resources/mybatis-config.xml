@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration   
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 懒加载关闭，所有相关联实体全部加载-->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<typeAliases>
+		<!--这里给实体类取别名，方便在mapper配置文件中使用 -->
+		<!-- <typeAlias alias="user" type="cn.hs.pojo.User"/> -->
+		<!-- <typeAlias alias="room" type="cn.hs.pojo.Room"/> -->
+		<package name="cn.hs.pojo" />
+	</typeAliases>
+</configuration>  

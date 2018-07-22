@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.room.RoomMapper">
+
+<!-- 添加机房信息 -->
+<insert id="addRoom" parameterType="Room">
+	insert into room(roomName,roomSeat,roomStatus) 
+	values(#{roomName},#{roomSeat},#{roomStatus})
+</insert>
+<!-- 更新机房信息 -->
+<update id="updateRoom" parameterType="Room">
+	update room 
+	<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+		<if test="roomName!=null">roomName=#{roomName},</if>
+		<if test="roomSeat!=null">roomSeat=#{roomSeat},</if>
+		<if test="roomStatus!=null">roomStatus=#{roomStatus},</if>
+	</trim>
+</update>
+<!-- 删除机房信息 -->
+<delete id="deleteRoom" parameterType="Room">
+	delete from room where id=#{id}
+</delete>
+<!-- 获取机房列表 -->
+<select id="getRoomList" resultType="Room">
+	select * from room
+</select>
+<!-- 获取单个机房信息 -->
+<select id="getRoom" parameterType="Room" resultType="Room">
+	select * from room
+	<trim prefix="where" prefixOverrides="and|or">
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="roomName!=null">
+			and roomName=#{roomName}
+		</if>
+	</trim>
+</select>
+
+
+</mapper>

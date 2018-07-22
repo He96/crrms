@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.subscribe.SubscribeMapper">
+<!-- 增加预约信息表 -->
+<insert id="addSubscribe" parameterType="Subscribe">
+	insert into subscribe(userId,subscribeRoom,subscribeWeek,subscribeNode,subscribeDate,subscribeContent,subscribeStatus)
+	 values(#{userId},#{subscribeRoom},#{subscribeWeek},#{subscribeNode},#{subscribeDate},#{subscribeContent},#{subscribeStatus})
+</insert>
+<!-- 更改信息预约表 -->
+<update id="updateSubscribe" parameterType="Subscribe">
+	update subscribe set subscribeStatus=#{subscribeStatus} where id=#{id}
+</update>
+<!-- 删除预约信息表 -->
+<delete id="deleteSubscribe" parameterType="int">
+	delete from subscribe where id=#{id}
+</delete>
+<!-- 用户预约表所有信息 -->
+<select id="userSubscribeListAll" resultType="Subscribe">
+	select * from subscribe,user where subscribe.userId=user.userId
+	 and subscribe.userId=#{userId}
+</select>
+<!-- 限制用户预约次数 -->
+<select id="subscribeConfine" resultType="int">
+	SELECT COUNT(*) FROM subscribe WHERE userId=#{userId}
+	AND subscribeStatus='待审核'
+</select>
+<!-- 用户个人预约表信息 -->
+<select id="userSubscribeList" parameterType="int" resultType="Subscribe">
+	select * from subscribe where id=#{id}
+</select>
+<!-- 管理员查看审核通过人员 -->
+<select id="subscribeListYes" resultType="Subscribe">
+	<!-- select * from subscribe where subscribeStatus='通过' -->
+	SELECT * FROM subscribe,user 
+		WHERE subscribe.userId=user.userId 
+			AND subscribe.subscribeStatus='通过'
+</select>
+<!-- 管理员审核 -->
+<select id="subscribeListNo" resultType="Subscribe">
+	SELECT * FROM subscribe,user 
+		WHERE subscribe.userId=user.userId 
+			AND subscribe.subscribeStatus='待审核'
+</select>
+<select id="subscribeList" resultType="Subscribe">
+	select * from subscribe,user 
+		where subscribe.userId=user.userId
+			and subscribe.subscribeStatus!='未通过' 
+			and subscribe.subscribeRoom=#{roomName}
+</select>
+<select id="synSubscribe" parameterType="Subscribe" resultType="int">
+	select count(*) from subscribe
+		where subscribeRoom=#{subscribeRoom} 
+			and subscribeDate=#{subscribeDate}
+			and subscribeNode=#{subscribeNode}
+</select>
+</mapper>

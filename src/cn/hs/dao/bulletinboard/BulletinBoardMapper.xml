@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.bulletinboard.BulletinBoardMapper">
+<!-- 添加公告 -->
+<insert id="addBulletin" parameterType="BulletinBoard">
+	insert into bulletinboard(bulletinTitle,bulletinContent,bulletinDate)
+		values(#{bulletinTitle},#{bulletinContent},#{bulletinDate})
+</insert>
+<!-- 删除公告 -->
+<delete id="deleteBulletin">
+	delete from bulletinboard where id=#{id}
+</delete>
+<!-- 查看公告 -->
+<select id="getBulletinList" resultType="BulletinBoard">
+	select * from bulletinboard
+</select>
+</mapper>

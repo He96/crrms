@@ -1,0 +1,34 @@
+*{
+}
+body{
+ 	background:linear-gradient(to right,#f3f4f3,#bdbdbd);
+ }
+h3{
+ 	text-align:center;
+ 	padding-top:50px;
+ 	margin-bottom: 50px;
+}
+.form-group select,	.form-group .bg{
+ 	background: none;
+ 	border: 1px #808080 solid;
+ }
+#checkTime{
+	text-align:left;
+ 	display: none;
+ 	padding-left:0px;
+}
+
+.form-group img{
+	width:80%;
+	height:80%;
+}
+header{
+	width: 100%;
+	padding: 30px;
+	text-align: center;
+}
+header h3{
+	font-family:"仿宋";
+	font-weight:bold;
+}
+  

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hs.dao.course.CourseMapper">
+<!-- 添加课程 -->
+<insert id="addCourse" parameterType="Course">
+	insert into course(courseWeek,courseNode,courseName,courseTeacher,roomName,startDate,endDate,weekWeek) 
+	values(#{courseWeek},#{courseNode},#{courseName},#{courseTeacher},#{roomName},#{startDate},#{endDate},#{weekWeek})
+</insert>
+<!-- 更改课程 -->
+<update id="updateCourse" parameterType="Course">
+	update course 
+	<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+		<if test="courseWeek!=null">courseWeek=#{courseWeek},</if>
+		<if test="courseNode!=null">courseNode=#{courseNode},</if>
+		<if test="courseName!=null">courseName=#{courseName},</if>
+		<if test="courseTeacher!=null">courseTeacher=#{courseTeacher},</if>
+		<if test="roomName!=null">roomName=#{roomName},</if>
+		<if test="weekWeek!=null">roomName=#{weekWeek},</if>
+	</trim>
+</update>
+<!-- 删除课程 -->
+<delete id="deleteCourse" parameterType="Course">
+	delete from course where id=#{id}
+</delete>
+<!-- 格式化课程 -->
+<delete id="deleteAllCourse">
+	delete from course 
+</delete>
+<!-- 查询课表 -->
+<select id="getCourseList" resultType="Course">
+	select * from course where roomName=#{roomName};
+</select>
+<!-- 查询第一周单个课程 -->
+<select id="getOnlyCourseList" resultType="Course">
+	select * from course where weekWeek LIKE '{第1%' LIMIT 1
+</select>
+</mapper>

@@ -1,0 +1,32 @@
+*{
+	margin: 0 auto;
+}
+/*背景图片*/
+body{
+	background:linear-gradient(to right,#f3f4f3,#bdbdbd);
+}
+#row1{
+	height: 80px;
+	margin:40px;
+	padding-top:40px;
+	text-align: center;
+	line-height: 20px;
+}
+#forgetForm div div input{
+	font-size: 16px;
+	display: flex;
+	background: none;
+	border: 1px #808080 solid;
+	box-shadow: 5px 5px 5px #808080; 
+}
+#submit{
+	margin-top:20px;
+	box-shadow: 5px 5px 5px #0080ff; 
+}
+#resultInfo{
+	text-align: center;
+	padding:20px;
+}
+
+
+
